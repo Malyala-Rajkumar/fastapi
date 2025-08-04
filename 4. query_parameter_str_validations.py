@@ -117,28 +117,26 @@ Pydantic v1 `regex` instead of `pattern`
 #     app.run()
 
 
-""" Required parameters """
+""" 
+Required parameters :- 
+When we don't need to declare more validations or metadata, we can make the q query parameter required just by not declaring a default value, like:
+"""
 
+# from typing import Annotated
+# from fastapi import FastAPI, Query
 
+# app =FastAPI()
+# @app.get('/')
+# async def read_items(q: Annotated[str, Query(min_length= 3)]):
+#     results = {'items' : [{'item_id': 'Magic Box'}, {'item_id': 'Bottle'}]}
+#     if q:
+#         results.update({'q': q})
+#     return results
 
+"""Refer to fastapi notes"""
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+"""
+Declare more metadata:- 
+You can add more information about the parameter.
+That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
+"""
