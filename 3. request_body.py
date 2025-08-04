@@ -6,8 +6,6 @@ Your API almost always has to send a response body. But clients don't necessaril
 time, sometimes they only request a path, maybe with some query parameters, but don't send a body.
 To declare a request body, you use Pydantic models with all their power and benefits.
 
-"""
-"""
 To send data, you should use one of: POST (the more common), PUT, DELETE or PATCH.
 Sending a body with a GET request has an undefined behavior in the specifications, nevertheless, it is supported by 
 FastAPI, only for very complex/extreme use cases.
@@ -49,6 +47,7 @@ Those schemas will be part of the generated OpenAPI schema, and used by the auto
 
 # Use the model - Inside of the function, you can access all the attributes of the model object directly:
 
+
 """
 from typing import Union
 from fastapi import FastAPI
@@ -68,11 +67,13 @@ async def create_item(item: Item):
         price_with_tax = item.price + item.tax
         item_dict.update({"price_with_tax": price_with_tax})
     return item_dict
- """ 
+"""
+
 
 #  Request body + path parameters
 
-"""from typing import Union
+"""
+from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 app = FastAPI()
@@ -101,11 +102,7 @@ class Item(BaseModel):
     description: str | None = None
     price: float
     tax: float | None = None
-
-
 app = FastAPI()
-
-
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Item, q: str | None = None):
     result = {"item_id": item_id, **item.dict()}
@@ -180,8 +177,9 @@ async def update_item(item_id: int, item: Item, q: str | None = None):
 #         raise HTTPException(status_code=404, detail="Item not found")
 #     del items_db[item_id]
 #     return {"message": f"Item {item_id} deleted"}
-# m
 
+
+"""
 from datetime import datetime
 
 import logfire
@@ -205,3 +203,4 @@ print(m.dimensions)
 #> (10, 20)
 
 Delivery(timestamp='2020-01-02T03:04:05Z', dimensions=['10'])
+"""

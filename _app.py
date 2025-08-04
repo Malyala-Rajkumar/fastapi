@@ -45,12 +45,14 @@ These types that have internal types are called "generic" types. And it's possib
 To declare those types and the internal types, you can use the standard Python module typing. It exists specifically to support these type hints.
 """
 
-"""Dict¶
+"""
+Dict
 To define a dict, you pass 2 type parameters, separated by commas.
 
 The first type parameter is for the keys of the dict.
 
-The second type parameter is for the values of the dict:"""
+The second type parameter is for the values of the dict:
+"""
 
 # def process_items(prices: dict[str, float]):
 #     for item_name, item_price in prices.items():
@@ -76,18 +78,14 @@ The second type parameter is for the values of the dict:"""
 # p = Person("Rajkumar")
 # print(get_person_name(p))  
 
-from datetime import datetime
-
-from pydantic import BaseModel
-
-
+"""
+#from datetime import datetime
+#from pydantic import BaseModel
 # class User(BaseModel):
 #     id: int
 #     name: str = "John Doe"
 #     signup_ts: datetime | None = None
 #     friends: list[int] = []
-
-
 # external_data = {
 #     "id": "123",
 #     "signup_ts": "2017-06-01 12:22",
@@ -98,3 +96,4 @@ from pydantic import BaseModel
 # # > User id=123 name='John Doe' signup_ts=datetime.datetime(2017, 6, 1, 12, 22) friends=[1, 2, 3]
 # print(user.id)
 # # > 123
+"""

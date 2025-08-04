@@ -65,21 +65,21 @@ Add regular expressions
 
 """
 
-from fastapi import FastAPI, Query
-from typing import Annotated
-import re 
-app = FastAPI()
-@app.get('/items/')
-def read_items(
-    q: Annotated[int|None, Query(min_length = 3, max_length= 50,)]= None):
+# from fastapi import FastAPI, Query
+# from typing import Annotated
+# import re 
+# app = FastAPI()
+# @app.get('/items/')
+# def read_items(
+#     q: Annotated[int|None, Query(min_length = 3, max_length= 50,)]= None):
 
-    results = {'items' : [{'item_id': 'Magic Box'}, {'item_id': 'Bottle'}]}
-    if q:
-        results.update({'q': q})
-    return results
+#     results = {'items' : [{'item_id': 'Magic Box'}, {'item_id': 'Bottle'}]}
+#     if q:
+#         results.update({'q': q})
+#     return results
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
 
 
 """

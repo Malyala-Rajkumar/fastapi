@@ -1,22 +1,23 @@
+
 # import asyncio
+# # Define an async function
+# async def say_hello():
+#     print("Hello after 1 second...")
+#     await asyncio.sleep(1)
+#     print("Hello again!")
 
-"""
-# Define an async function
-async def say_hello():
-    print("Hello after 1 second...")
-    await asyncio.sleep(1)
-    print("Hello again!")
-"""
-
-# Main async function
+# # Main async function
 # async def main():
 #     await say_hello()
 # say_hello()
 
 
-# Properly run it
-# asyncio.run(say_hello())
 """
+Properly run it
+asyncio.run(say_hello())
+"""
+
+
 # from fastapi import FastAPI
 
 # obj = FastAPI()
@@ -28,10 +29,10 @@ async def say_hello():
 # if __name__ == '__main__':
 #     obj.run()"""
 
-'''
+"""
 Path Parameters
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
-'''
+"""
 
 # from fastapi import FastAPI
 # app = FastAPI()
@@ -58,7 +59,6 @@ You can declare path "parameters" or "variables" with the same syntax used by Py
 
 # app = FastAPI()
 
-
 # @app.get("/users/me")
 # async def read_user_me():
 #     return {"user_id": "the current user"}
@@ -76,6 +76,7 @@ predefined, you can use a standard Python Enum.
 """
 
 # Create an Enum class
+
 """
 Import Enum and create a sub-class that inherits from `str` and from `Enum`.
 
@@ -83,30 +84,21 @@ By inheriting from str the API docs will be able to know that the values must be
 render correctly.
 
 Then create class attributes with fixed values, which will be the available valid values:
-
-"""
-
-"""
-from enum import Enum
-from fastapi import FastAPI
-app = FastAPI()
-class ModelName(str, Enum):
-    alexnet = 'alexnet'
-    resnet = 'resnet'
-    lenet = 'lenet'
-@app.get('/models/{model_name}')
-async def get_model(model_name: ModelName):
-    # if model_name is ModelName.alexnet:
-    if model_name.value == "alexnet":
-        return {'Model Name': model_name, 'message': 'This model is the Deep Learning the FTW!'}
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
-    return {"model_name": model_name, "message": "Have some residuals"}
 """
 
 
+# from enum import Enum
 # from fastapi import FastAPI
 # app = FastAPI()
-# @app.get("/files/{file_path:path}")
-# async def read_file(file_path: str):
-#     return {"file_path": file_path}
+# class ModelName(str, Enum):
+#     alexnet = 'alexnet'
+#     resnet = 'resnet'
+#     lenet = 'lenet'
+# @app.get('/models/{model_name}')
+# async def get_model(model_name: ModelName):
+#     # if model_name is ModelName.alexnet:
+#     if model_name.value == "alexnet":
+#         return {'Model Name': model_name, 'message': 'This model is the Deep Learning the FTW!'}
+#     if model_name.value == "lenet":
+#         return {"model_name": model_name, "message": "LeCNN all the images"}
+#     return {"model_name": model_name, "message": "Have some residuals"}
