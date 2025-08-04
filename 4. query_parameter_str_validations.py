@@ -140,3 +140,78 @@ Declare more metadata:-
 You can add more information about the parameter.
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 """
+
+
+# from fastapi import FastAPI, Query
+# from typing_extensions import Annotated
+
+# obj = FastAPI()
+# @obj.get('/read_items/')
+# async def read_items(q: Annotated[str|None, Query(min_length= 3, title="This is the read Items function", 
+#                     description='It is all having all the query parameter string vallidation of the data')] = None):
+#     results = {'items' : [{'item_id': 'Magic Box'}, {'item_id': 'Bottle'}]}
+#     if q:
+#         results.update({'q': q})
+#     return results
+
+
+"""
+Alias parameters
+"""
+
+# from fastapi import FastAPI, Query
+# from typing import Annotated
+
+# app =FastAPI()
+# @app.get('/items')
+# async def read_items(q:Annotated[str|None, Query(alias= 'item-query')] = None):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results.update({"q": q})
+#     return results
+
+"""
+Deprecating parameters
+Now let's say you don't like this parameter anymore.
+
+You have to leave it there a while because there are clients using it, but you want the docs to clearly show it as deprecated.
+
+Then pass the parameter `deprecated=True` to `Query`:
+"""
+
+# from turtle import title
+# from typing_extensions import Annotated
+# from fastapi import FastAPI, Query
+# app =FastAPI()
+# @app.get('/items/')
+# async def read_items(q: Annotated[str|None,
+#                     Query(alias= 'item-query',
+#                     title='Query string',
+#                     description="Query string for the items to search in the database that have a good match",
+#                     min_length=3,
+#                     max_length=50,
+#                     pattern="^fixedquery$",
+#                     deprecated=True,)] = None):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results.update({"q": q})
+#     return results
+
+
+"""
+Exclude parameters from OpenAPI:- 
+To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter 
+include_in_schema of Query to False:
+"""
+
+from typing import Annotated
+from fastapi import FastAPI, Query
+app = FastAPI()
+@app.get("/items/")
+
+async def read_items(
+    hidden_query: Annotated[str | None, Query(include_in_schema=False)] = None,):
+    if hidden_query:
+        return {"hidden_query": hidden_query}
+    else:
+        return {"hidden_query": "Not found"}
