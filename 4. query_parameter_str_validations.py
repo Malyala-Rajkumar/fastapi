@@ -133,7 +133,9 @@ When we don't need to declare more validations or metadata, we can make the q qu
 #         results.update({'q': q})
 #     return results
 
-"""Refer to fastapi notes"""
+"""
+Refer to fastapi notes
+"""
 
 """
 Declare more metadata:- 
