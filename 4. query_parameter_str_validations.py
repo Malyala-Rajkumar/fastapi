@@ -206,14 +206,48 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 include_in_schema of Query to False:
 """
 
-from typing import Annotated
-from fastapi import FastAPI, Query
-app = FastAPI()
-@app.get("/items/")
+# from typing import Annotated
+# from fastapi import FastAPI, Query
+# app = FastAPI()
+# @app.get("/items/")
 
-async def read_items(
-    hidden_query: Annotated[str | None, Query(include_in_schema=False)] = None,):
-    if hidden_query:
-        return {"hidden_query": hidden_query}
-    else:
-        return {"hidden_query": "Not found"}
+# async def read_items(
+#     hidden_query: Annotated[str | None, Query(include_in_schema=False)] = None,):
+#     if hidden_query:
+#         return {"hidden_query": hidden_query}
+#     else:
+#         return {"hidden_query": "Not found"}
+
+
+"""
+Custom Validation
+There could be cases where you need to do some custom validation that can't be done with the parameters shown above.
+
+In those cases, you can use a custom validator function that is applied after the normal validation 
+(e.g. after validating that the value is a str).
+"""
+
+# import random
+# from fastapi import FastAPI
+# from typing import Annotated
+# from pydantic import AfterValidator
+# app = FastAPI()
+
+# data = {
+#     "isbn-9781529046137": "The Hitchhiker's Guide to the Galaxy",
+#     "imdb-tt0371724": "The Hitchhiker's Guide to the Galaxy",
+#     "isbn-9781439512982": "Isaac Asimov: The Complete Stories, Vol. 2",
+# }
+# print(data.items)
+
+# def check_valid_id(id:str):
+#     if not id.startswith(("isbn-", "imdb-")):
+#         raise ValueError('Invalid id format, it must start with "isbn-" or "imdb-"')
+#     return id
+# @app.get('/items/')
+# async def read_items(id:Annotated[str|None, AfterValidator(check_valid_id)] = None):
+#     if id:
+#         item = data.get(id)
+#     else:
+#         id, item = random.choice(list(data.items()))
+#     return {'id': id, "name": item}
